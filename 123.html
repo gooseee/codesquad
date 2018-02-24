@@ -1,0 +1,250 @@
+<html>
+
+<head>
+  <title>codesquad lv2 test</title>
+</head>
+
+
+<body>
+  <h1>test</h1>
+</body>
+<script>
+  /**
+   * 알고리즘 
+   * 
+   * 1. 정답 생성
+   * 2. 유저 숫자 입력 받음
+   * 3. strike, ball 수를 셈
+   * 4. strike 3이면 종료
+   * 5. strike 3이 아니면 stirke, ball 수 출력, 둘 다 0이면 nothing
+   * 6. 2번부터 반복
+   * 
+   **/
+
+  // 랜덤한 정답을 생성하는 함수
+  /* function getRandomAnswer() {
+     //1. 정답 생성
+     //TODO math.random() 함수를 써서 정답을 만들어야 함
+     // 1 ~ 9 까지 랜덤 수 3개를 만들어야함.
+     // 참고 : https://gist.github.com/kerimdzhanov/7529623
+     // 주의 : 3개 숫자가 같지 않아야함.
+     // 3개 숫자가 같지 않게 만들려면 어떻게 해야할지 고민해볼 것
+
+     //깔끔하게 만들려면 함수를 작성해서 하는것이 좋음.    
+     return ['1', '2', '3'];
+   }*/
+
+  function getRandomAnswer(min, max) {
+    return Math.floor(Math.random() * (max - min) + min);
+  }
+
+  function makinganswer() {
+    var answer = [];
+    while (answer.length < 3) {
+      var newnumber = getRandomAnswer(1, 10)
+      if (answer.includes(newnumber)) {
+        continue;
+      }
+
+      answer.push(newnumber)
+    }
+    return answer
+  }
+  var answer = makinganswer()
+
+  function countstrike(answer, userinput) {
+    var strike = 0;
+    for (var i = 0; i < 3; i++) {
+      if (answer[i] == userinput[i]) {
+        strike++;
+      }
+    }
+    return strike;
+  }
+
+
+  //ball 수를 세는 코드를 작성할 것
+  function countsamenumber(answer, userinput) {
+    var samenumber = 0;
+    for (var i = 0; i < 3; i++) {
+      if (answer.includes(Number(userinput[i]))) {
+        samenumber++
+      }
+    }
+    return samenumber;
+  }
+
+  //전체 시도 회수를 제한한다.
+  //while(true)를 쓰는 경우 무한 루프에 걸릴 위험 있어 임시로 넣어둠
+  // +로 게임 재미를 위해 전체 회사를 제한해둔 것
+  var maxTryCount = 10;
+  var tryCount = 0;
+  while (true) {
+    /////////////////////////////////////////////////////////////////////////
+    // 사용자 입력을 처리하는 코드 작성
+    /////////////////////////////////////////////////////////////////////////
+    tryCount++;
+
+    //유저 숫자 입력받음
+    var userinput = prompt('input your answer');
+    var userinput = userinput.split('');
+    var userinput = [Number(userinput[0]), Number(userinput[1]), Number(userinput[2])];
+
+    var strike = countstrike(answer, userinput);
+    var samenumber = countsamenumber(answer, userinput);
+
+    /////////////////////////////////////////////////////////////////////////
+    // 정답인지 체크하고 정답이라면 break, 아니라면 출력해주는 코드 작성
+    /////////////////////////////////////////////////////////////////////////
+
+    //stirke가 3이면 종료
+    if (strike == 3) {
+      break;
+    }
+
+    if (tryCount == maxTryCount) {
+      alert('exceed try count');
+      break;
+    }
+
+    if (samenumber > 0) {
+      alert('strike : ' + strike + 'ball : ' + (samenumber - strike));
+    } else {
+      alert('nothing');
+    }
+  }
+
+  /////////////////////////////////////////////////////////////////////////
+  // 최종 결과를 알려주는 코드 작성
+  /////////////////////////////////////////////////////////////////////////
+  if (strike == 3) {
+    alert('Congraturation! Correct!');
+  }
+</script>
+
+</html>
+<html>
+
+<head>
+  <title>codesquad lv2 test</title>
+</head>
+
+
+<body>
+  <h1>test</h1>
+</body>
+<script>
+  /**
+   * 알고리즘 
+   * 
+   * 1. 정답 생성
+   * 2. 유저 숫자 입력 받음
+   * 3. strike, ball 수를 셈
+   * 4. strike 3이면 종료
+   * 5. strike 3이 아니면 stirke, ball 수 출력, 둘 다 0이면 nothing
+   * 6. 2번부터 반복
+   * 
+   **/
+
+  // 랜덤한 정답을 생성하는 함수
+  /* function getRandomAnswer() {
+     //1. 정답 생성
+     //TODO math.random() 함수를 써서 정답을 만들어야 함
+     // 1 ~ 9 까지 랜덤 수 3개를 만들어야함.
+     // 참고 : https://gist.github.com/kerimdzhanov/7529623
+     // 주의 : 3개 숫자가 같지 않아야함.
+     // 3개 숫자가 같지 않게 만들려면 어떻게 해야할지 고민해볼 것
+
+     //깔끔하게 만들려면 함수를 작성해서 하는것이 좋음.    
+     return ['1', '2', '3'];
+   }*/
+
+  function getRandomAnswer(min, max) {
+    return Math.floor(Math.random() * (max - min) + min);
+  }
+
+  function makinganswer() {
+    var answer = [];
+    while (answer.length < 3) {
+      var newnumber = getRandomAnswer(1, 10)
+      if (answer.includes(newnumber)) {
+        continue;
+      }
+
+      answer.push(newnumber)
+    }
+    return answer
+  }
+  var answer = makinganswer()
+
+  function countstrike(answer, userinput) {
+    var strike = 0;
+    for (var i = 0; i < 3; i++) {
+      if (answer[i] == userinput[i]) {
+        strike++;
+      }
+    }
+    return strike;
+  }
+
+
+  //ball 수를 세는 코드를 작성할 것
+  function countsamenumber(answer, userinput) {
+    var samenumber = 0;
+    for (var i = 0; i < 3; i++) {
+      if (answer.includes(Number(userinput[i]))) {
+        samenumber++
+      }
+    }
+    return samenumber;
+  }
+
+  //전체 시도 회수를 제한한다.
+  //while(true)를 쓰는 경우 무한 루프에 걸릴 위험 있어 임시로 넣어둠
+  // +로 게임 재미를 위해 전체 회사를 제한해둔 것
+  var maxTryCount = 10;
+  var tryCount = 0;
+  while (true) {
+    /////////////////////////////////////////////////////////////////////////
+    // 사용자 입력을 처리하는 코드 작성
+    /////////////////////////////////////////////////////////////////////////
+    tryCount++;
+
+    //유저 숫자 입력받음
+    var userinput = prompt('input your answer');
+    var userinput = userinput.split('');
+    var userinput = [Number(userinput[0]), Number(userinput[1]), Number(userinput[2])];
+
+    var strike = countstrike(answer, userinput);
+    var samenumber = countsamenumber(answer, userinput);
+
+    /////////////////////////////////////////////////////////////////////////
+    // 정답인지 체크하고 정답이라면 break, 아니라면 출력해주는 코드 작성
+    /////////////////////////////////////////////////////////////////////////
+
+    //stirke가 3이면 종료
+    if (strike == 3) {
+      break;
+    }
+
+    if (tryCount == maxTryCount) {
+      alert('exceed try count');
+      break;
+    }
+
+    if (samenumber > 0) {
+      alert('strike : ' + strike + 'ball : ' + (samenumber - strike));
+    } else {
+      alert('nothing');
+    }
+  }
+
+  /////////////////////////////////////////////////////////////////////////
+  // 최종 결과를 알려주는 코드 작성
+  /////////////////////////////////////////////////////////////////////////
+  if (strike == 3) {
+    alert('Congraturation! Correct!');
+  }
+</script>
+
+</html>
